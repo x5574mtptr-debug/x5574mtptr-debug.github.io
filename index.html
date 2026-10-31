@@ -49,6 +49,12 @@
   .btn{display:inline-block;margin-top:46px;background:var(--ink);color:var(--ground);
     padding:16px 34px;font-size:15px;letter-spacing:.02em;transition:background .2s ease,transform .2s ease}
   .btn:hover{background:var(--accent)}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:46px}
+  .btn-row .btn{margin-top:0}
+  .btn-ghost{display:inline-block;background:transparent;color:var(--ink);
+    padding:16px 34px;font-size:15px;letter-spacing:.02em;border:1.5px solid var(--ink);
+    transition:background .2s ease,color .2s ease}
+  .btn-ghost:hover{background:var(--ink);color:var(--ground)}
   .side-label{display:block;font-size:13.5px;letter-spacing:.14em;color:var(--muted);margin-bottom:22px}
   .focus{list-style:none}
   .focus li{display:flex;align-items:baseline;gap:14px;font-size:17px;color:var(--body);padding:13px 0}
@@ -115,7 +121,10 @@
       <div class="hero-lead">
         <h1>linkshu</h1>
         <p class="intro">把软硬件折腾出花来的人——树莓派智能家居、本地部署 DeepSeek、GitHub Pages 建站与逆向工程。</p>
-        <a class="btn" href="#projects">看我在做什么</a>
+        <div class="btn-row">
+          <a class="btn" href="#projects">看我在做什么</a>
+          <a class="btn-ghost" href="https://github.com/x5574mtptr-debug/opensource" target="_blank" rel="noopener">下载我的开源项目</a>
+        </div>
       </div>
       <div class="hero-side">
         <span class="side-label">近期方向</span>
