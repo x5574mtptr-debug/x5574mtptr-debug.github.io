@@ -1,105 +1,124 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="js">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>linkshu</title>
+<meta name="theme-color" content="#f4f1ea">
+<title>linkshu · 把软硬件折腾出花来</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#161616;          /* 标题 */
-    --body:#3a3a3a;         /* 正文，柔和黑更护眼 */
-    --muted:#8a8a86;        /* 次要文字 */
-    --ground:#fbfaf8;       /* 暖白底，不刺眼 */
-    --accent:#e8542b;       /* 唯一强调色 */
-    --dark:#15151a;         /* 深色板块底 */
-    --dark-text:#ECEAE4;
-    --dark-muted:#9a9a96;
-    --hairline:rgba(0,0,0,.07);
+    --bg:#f4f1ea;          /* 暖白底（低彩度，非被禁的奶油+陶土组合） */
+    --bg-2:#ece7dc;        /* 仅比底色深一档的色块，用来分隔板块，不用线条 */
+    --ink:#19160f;          /* 墨色：标题与最强标记 */
+    --text:#2b271f;         /* 正文，足够深，不在灰里 */
+    --muted:#6f695c;        /* 次级文字，仍在底色上过对比 */
+    --accent:#0f7a4f;       /* 唯一强调色：墨绿（合规暖色，契合终端/硬件） */
+    --accent-ink:#ffffff;
+    --dark-bg:#16140e;      /* 深色收尾板块 */
+    --dark-text:#f3efe6;
+    --dark-muted:#a59e8f;
+    --dark-accent:#46d39a;
+    --margin:clamp(20px,5vw,64px);
+    --maxw:1600px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   body{
-    font-family:"PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--ground);color:var(--body);
-    font-size:18px;line-height:1.72;
+    font-family:"Cabinet Grotesk","PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--text);
+    font-size:18px;line-height:1.6;font-weight:400;
   }
-  a{color:inherit;text-decoration:none}
-  .wrap{width:min(1120px,100%);margin:0 auto;padding:0 clamp(28px,6vw,80px)}
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--margin)}
 
-  /* nav：极简，滚动后才出现一条极淡的分隔 */
-  nav{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.82);
-    backdrop-filter:saturate(140%) blur(8px);transition:border-color .3s ease;border-bottom:1px solid transparent}
-  nav.scrolled{border-bottom-color:var(--hairline)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
-  .brand{font-weight:600;font-size:21px;letter-spacing:-0.02em;color:var(--ink)}
-  .nav-links{display:flex;gap:34px;font-size:15.5px;color:var(--muted)}
-  .nav-links a{position:relative;transition:color .2s ease}
-  .nav-links a:hover{color:var(--ink)}
-  .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;
-    background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
-  .nav-links a:hover::after{transform:scaleX(1)}
+  /* 导航：纯文字条，无玻璃、无线条、无阴影 */
+  nav{position:sticky;top:0;z-index:50;background:var(--bg)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-weight:800;font-size:22px;letter-spacing:-0.02em;color:var(--ink)}
+  .nav-links{display:flex;gap:30px;font-size:16px;color:var(--ink)}
+  .nav-links a{color:var(--ink);transition:color .2s ease}
+  .nav-links a:hover{color:var(--accent)}
 
-  section{padding-block:clamp(104px,14vw,196px)}
+  section{padding-block:clamp(88px,12vw,168px)}
 
-  /* hero：不对称两栏，底部对齐，留白充足 */
-  .hero .wrap{padding-top:clamp(80px,12vw,150px);padding-bottom:clamp(90px,13vw,170px)}
-  .hero-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(40px,6vw,96px);align-items:end}
-  .hero h1{font-size:clamp(74px,13vw,188px);font-weight:600;letter-spacing:-0.045em;line-height:0.9;color:var(--ink)}
-  .intro{font-size:clamp(19px,2.1vw,27px);line-height:1.5;color:var(--body);max-width:21em;margin-top:34px}
-  .btn{display:inline-block;margin-top:46px;background:var(--ink);color:var(--ground);
-    padding:16px 34px;font-size:15px;letter-spacing:.02em;transition:background .2s ease,transform .2s ease}
+  /* 首屏：大字主张，左大右列，等距边距 */
+  .hero .wrap{padding-top:clamp(48px,8vw,110px);padding-bottom:clamp(60px,9vw,120px)}
+  .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(36px,6vw,96px);align-items:end}
+  .hero-title{font-weight:800;letter-spacing:-0.045em;line-height:0.88;color:var(--ink);
+    font-size:clamp(72px,15vw,200px)}
+  .hero-title .line{display:block;overflow:hidden}
+  .hero-title .line-in{display:block;transform:translateY(110%)}
+  .intro{font-size:clamp(20px,2.3vw,30px);line-height:1.45;color:var(--text);
+    max-width:20em;margin-top:34px;font-weight:400}
+  .intro b{font-weight:500;color:var(--ink)}
+  .actions{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:42px}
+  .btn{display:inline-flex;align-items:center;background:var(--ink);color:var(--bg);
+    padding:18px 34px;font-size:16px;font-weight:500;letter-spacing:.01em;
+    transition:background .2s ease}
   .btn:hover{background:var(--accent)}
-  .btn-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:46px}
-  .btn-row .btn{margin-top:0}
-  .btn-ghost{display:inline-block;background:transparent;color:var(--ink);
-    padding:16px 34px;font-size:15px;letter-spacing:.02em;border:1.5px solid var(--ink);
-    transition:background .2s ease,color .2s ease}
-  .btn-ghost:hover{background:var(--ink);color:var(--ground)}
-  .side-label{display:block;font-size:13.5px;letter-spacing:.14em;color:var(--muted);margin-bottom:22px}
+  .textlink{font-size:16px;color:var(--ink);border-bottom:2px solid var(--accent);
+    padding-bottom:3px;transition:color .2s ease,border-color .2s ease}
+  .textlink:hover{color:var(--accent)}
+
+  /* 首屏右列：近期方向，做成排版清单 */
+  .side h2{font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0;margin-bottom:22px}
   .focus{list-style:none}
-  .focus li{display:flex;align-items:baseline;gap:14px;font-size:17px;color:var(--body);padding:13px 0}
-  .focus li::before{content:"";flex:0 0 auto;width:7px;height:7px;background:var(--accent);transform:translateY(-2px)}
+  .focus li{display:flex;align-items:baseline;gap:16px;font-size:clamp(19px,1.7vw,23px);
+    color:var(--ink);padding:11px 0;font-weight:500}
+  .focus li::before{content:"";flex:0 0 auto;width:16px;height:3px;background:var(--accent);
+    transform:translateY(-5px)}
 
-  /* 通用板块标题：序号 + 标题 */
-  .sec-title{display:flex;align-items:baseline;gap:18px;font-size:clamp(30px,4.6vw,54px);
-    font-weight:600;letter-spacing:-0.02em;color:var(--ink);margin-bottom:clamp(40px,5vw,64px)}
-  .sec-title .idx{font-size:.42em;font-weight:500;color:var(--accent);letter-spacing:0;transform:translateY(-.4em)}
+  /* 板块标题：无序号，单一锚线 */
+  .sec-head{font-size:clamp(34px,5vw,64px);font-weight:800;letter-spacing:-0.03em;
+    line-height:1;color:var(--ink);margin-bottom:clamp(36px,5vw,64px)}
 
-  /* skills：编辑式两栏行 */
-  .row{display:grid;grid-template-columns:1fr 1.9fr;gap:clamp(20px,4vw,60px);padding-block:38px}
-  .row + .row{border-top:1px solid var(--hairline)}
-  .row .term{font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-0.01em;color:var(--ink)}
-  .row .desc{font-size:18px;color:var(--body);line-height:1.7}
+  /* 手上的活：左右分栏（词 | 说明），用空间而非线条分隔 */
+  .cap-row{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.7fr);
+    gap:clamp(20px,4vw,80px);padding-block:clamp(30px,4vw,56px);align-items:baseline}
+  .cap-row .term{font-size:clamp(26px,3vw,40px);font-weight:800;letter-spacing:-0.02em;
+    line-height:1.02;color:var(--ink)}
+  .cap-row .desc{font-size:18px;color:var(--text);line-height:1.62}
+  .cap-row .desc a{color:var(--accent);border-bottom:2px solid currentColor;padding-bottom:1px}
+  .cap-row .desc a:hover{opacity:.62}
 
-  /* projects：纵向堆叠大标题 */
-  .proj{padding-block:46px}
-  .proj + .proj{border-top:1px solid var(--hairline)}
-  .proj h3{font-size:clamp(27px,3.3vw,44px);font-weight:600;letter-spacing:-0.02em;color:var(--ink);
-    display:inline-block;transition:color .2s ease}
-  .proj:hover h3{color:var(--accent)}
-  .proj p{font-size:18px;color:var(--body);max-width:36em;margin-top:16px;line-height:1.7}
-  .row .desc a, .proj p a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;transition:opacity .2s ease}
-  .row .desc a:hover, .proj p a:hover{opacity:.6}
+  /* 做过的一些东西：同色块板块，大标题纵向堆叠，与上一板块构成节奏 */
+  .work{background:var(--bg-2)}
+  .work-item{padding-block:clamp(26px,3.6vw,46px)}
+  .work-item h3{font-size:clamp(30px,4.6vw,60px);font-weight:800;letter-spacing:-0.025em;
+    line-height:0.98;color:var(--ink)}
+  .work-item p{font-size:18px;color:var(--text);max-width:42em;margin-top:14px;line-height:1.6}
+  .work-item .links{margin-top:13px;font-size:16px;display:flex;gap:20px;flex-wrap:wrap}
+  .work-item .links a{color:var(--accent);border-bottom:2px solid currentColor;padding-bottom:1px}
+  .work-item .links a:hover{opacity:.62}
 
-  /* contact：深色收尾，名字全宽回归 */
-  .contact{background:var(--dark);color:var(--dark-text);padding-block:clamp(110px,15vw,200px)}
-  .contact .big{font-size:clamp(64px,15vw,200px);font-weight:600;letter-spacing:-0.045em;line-height:0.9;color:var(--dark-text)}
-  .contact .line{font-size:clamp(20px,2.2vw,28px);margin-top:34px;color:#f3f1ec;max-width:22em;line-height:1.5}
-  .contact .links{margin-top:46px;font-size:18px;display:flex;gap:36px;flex-wrap:wrap}
-  .contact .links a{color:var(--accent);position:relative}
-  .contact .links a::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1.5px;
-    background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
-  .contact .links a:hover::after{transform:scaleX(1)}
-  .copy{margin-top:72px;font-size:14px;color:var(--dark-muted)}
+  /* 联系：深色收尾，邮箱即巨型字体 */
+  .contact{background:var(--dark-bg);color:var(--dark-text);padding-block:clamp(90px,13vw,180px)}
+  .contact .lede{font-size:clamp(18px,2vw,22px);color:var(--dark-muted);max-width:24em;
+    line-height:1.5}
+  .contact .mail{display:inline-block;margin-top:clamp(30px,5vw,60px);
+    font-weight:800;letter-spacing:-0.03em;line-height:0.95;color:var(--dark-text);
+    font-size:clamp(40px,9vw,128px);transition:color .2s ease;word-break:break-word}
+  .contact .mail:hover{color:var(--dark-accent)}
+  .contact .foot{margin-top:clamp(48px,7vw,90px);display:flex;gap:40px;flex-wrap:wrap;
+    font-size:16px;align-items:baseline}
+  .contact .foot a{color:var(--dark-accent)}
+  .contact .foot .muted{color:var(--dark-muted)}
 
-  /* 动效：默认可见，JS 增强 */
-  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  /* 动效：默认可见，仅 .js 且非减弱偏好时隐藏再显现；绝不留下空白带 */
+  .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
   .js .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+  .js .hero-title .line-in{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+  .js .hero-title.in .line-in{transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .reveal,.js .hero-title .line-in{opacity:1;transform:none;transition:none}
+  }
 
   @media(max-width:820px){
-    .hero-grid{grid-template-columns:1fr;gap:48px;align-items:start}
-    .row{grid-template-columns:1fr;gap:10px;padding-block:30px}
+    .hero-grid{grid-template-columns:1fr;gap:44px;align-items:start}
+    .cap-row{grid-template-columns:1fr;gap:10px;padding-block:30px}
     .nav-links{display:none}
   }
 </style>
@@ -111,7 +130,7 @@
     <span class="brand">linkshu</span>
     <div class="nav-links">
       <a href="#skills">手上的活</a>
-      <a href="#projects">项目</a>
+      <a href="#projects">做过的一些东西</a>
       <a href="#contact">联系</a>
     </div>
   </div>
@@ -121,15 +140,15 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-lead">
-        <h1>linkshu</h1>
-        <p class="intro">把软硬件折腾出花来的人——树莓派智能家居、本地部署 DeepSeek、GitHub Pages 建站与逆向工程。</p>
-        <div class="btn-row">
-          <a class="btn" href="#projects">看我在做什么</a>
-          <a class="btn-ghost" href="https://github.com/x5574mtptr-debug/opensource" target="_blank" rel="noopener">下载我的开源项目</a>
+        <h1 class="hero-title"><span class="line"><span class="line-in">linkshu</span></span></h1>
+        <p class="intro">把软硬件折腾出花来的人。<b>树莓派智能家居、本地部署 DeepSeek、GitHub Pages 建站与逆向工程。</b></p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/x5574mtptr-debug/opensource" target="_blank" rel="noopener">下载我的开源项目</a>
+          <a class="textlink" href="#projects">看我在做什么 →</a>
         </div>
       </div>
-      <div class="hero-side">
-        <span class="side-label">近期方向</span>
+      <div class="side">
+        <h2>近期方向</h2>
         <ul class="focus">
           <li>树莓派智能家居以及树莓派相关项目</li>
           <li>本地部署 DeepSeek</li>
@@ -143,48 +162,46 @@
 
 <section class="skills" id="skills">
   <div class="wrap reveal">
-    <div class="sec-title"><span class="idx">01</span>手上的活</div>
-    <div class="row"><div class="term">树莓派智能家居</div><div class="desc">用树莓派搭家居自动化与常驻服务，传感器、继电器与看护脚本一起跑，上电即工作。</div></div>
-    <div class="row"><div class="term">本地部署 DeepSeek</div><div class="desc">在本地跑 DeepSeek 模型，模型文件迁到大容量盘并软链接挂回，不占系统盘。</div></div>
-    <div class="row"><div class="term">GitHub Pages 建站</div><div class="desc">纯静态站点搭建与部署，仓库即站点，自动 HTTPS，推上去就上线，零运维。</div></div>
-    <div class="row"><div class="term">逆向工程</div><div class="desc">拆开程序看它怎么跑，定位关键逻辑与数据结构，再改造成自己想要的行为。</div></div>
-    <div class="row"><div class="term">小米手环应用</div><div class="desc">基于 Xiaomi Vela 的米环快应用试验场，覆盖蓝牙、定位、传感器、振动等手表能力。<a href="https://github.com/x5574mtptr-debug/opensource/tree/%E5%B0%8F%E7%B1%B3%E6%89%8B%E7%8E%AF" target="_blank" rel="noopener">开源分支 →</a></div></div>
-    <div class="row"><div class="term">Shizuku 激活开源</div><div class="desc">Windows 桌面工具，把 Shizuku 的 ADB 激活流程压成几步点击，免 root 管理应用权限，并支持 Fastboot 线刷。<a href="https://github.com/x5574mtptr-debug/opensource/tree/shizuku" target="_blank" rel="noopener">开源分支 →</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/v1.0.0-portable" target="_blank" rel="noopener">下载便携版 ↓</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/old-shizuku-gaoji-1.0.0" target="_blank" rel="noopener">旧版 ↓</a></div></div>
+    <div class="sec-head">手上的活</div>
+    <div class="cap-row"><div class="term">树莓派智能家居</div><div class="desc">用树莓派搭家居自动化与常驻服务，传感器、继电器与看护脚本一起跑，上电即工作。</div></div>
+    <div class="cap-row"><div class="term">本地部署 DeepSeek</div><div class="desc">在本地跑 DeepSeek 模型，模型文件迁到大容量盘并软链接挂回，不占系统盘。</div></div>
+    <div class="cap-row"><div class="term">GitHub Pages 建站</div><div class="desc">纯静态站点搭建与部署，仓库即站点，自动 HTTPS，推上去就上线，零运维。</div></div>
+    <div class="cap-row"><div class="term">逆向工程</div><div class="desc">拆开程序看它怎么跑，定位关键逻辑与数据结构，再改造成自己想要的行为。</div></div>
+    <div class="cap-row"><div class="term">小米手环应用</div><div class="desc">基于 Xiaomi Vela 的米环快应用试验场，覆盖蓝牙、定位、传感器、振动等手表能力。<a href="https://github.com/x5574mtptr-debug/opensource/tree/%E5%B0%8F%E7%B1%B3%E6%89%8B%E7%8E%AF" target="_blank" rel="noopener">开源分支 →</a></div></div>
+    <div class="cap-row"><div class="term">Shizuku 激活开源</div><div class="desc">Windows 桌面工具，把 Shizuku 的 ADB 激活流程压成几步点击，免 root 管理应用权限，并支持 Fastboot 线刷。<a href="https://github.com/x5574mtptr-debug/opensource/tree/shizuku" target="_blank" rel="noopener">开源分支 →</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/v1.0.0-portable" target="_blank" rel="noopener">下载便携版 ↓</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/old-shizuku-gaoji-1.0.0" target="_blank" rel="noopener">旧版 ↓</a></div></div>
   </div>
 </section>
 
-<section class="projects" id="projects">
+<section class="work" id="projects">
   <div class="wrap reveal">
-    <div class="sec-title"><span class="idx">02</span>做过的一些东西</div>
-    <div class="proj"><h3>树莓派智能家居</h3><p>以树莓派为中枢的家庭自动化，设备上电即运行，与原有看护程序共存互不覆盖。</p></div>
-    <div class="proj"><h3>本地 DeepSeek 部署</h3><p>模型迁至大容量盘并软链接回原路径，本地推理常驻，系统盘零占用。</p></div>
-    <div class="proj"><h3>GitHub Pages 主页</h3><p>就是这个站点：纯 HTML 单页，推上仓库即上线，国内可访问。</p></div>
-    <div class="proj"><h3>逆向分析实践</h3><p>对现有程序做行为与结构逆向，理清调用关系后做定制改造。</p></div>
-    <div class="proj"><h3>小米手环应用</h3><p>基于 Xiaomi Vela 的米环快应用，覆盖蓝牙、定位、传感器、振动等手表能力，含伪装时钟等趣味玩法。<a href="https://github.com/x5574mtptr-debug/opensource/tree/%E5%B0%8F%E7%B1%B3%E6%89%8B%E7%8E%AF" target="_blank" rel="noopener">开源分支 →</a></p></div>
-    <div class="proj"><h3>Shizuku 激活开源</h3><p>Windows 桌面工具，把 Shizuku 的 ADB 激活流程压成几步点击，免 root 管理应用权限，并支持 Fastboot 线刷。<a href="https://github.com/x5574mtptr-debug/opensource/tree/shizuku" target="_blank" rel="noopener">开源分支 →</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/v1.0.0-portable" target="_blank" rel="noopener">下载便携版 ↓</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/old-shizuku-gaoji-1.0.0" target="_blank" rel="noopener">旧版 ↓</a></p></div>
+    <div class="sec-head">做过的一些东西</div>
+    <div class="work-item"><h3>树莓派智能家居</h3><p>以树莓派为中枢的家庭自动化，设备上电即运行，与原有看护程序共存互不覆盖。</p></div>
+    <div class="work-item"><h3>本地 DeepSeek 部署</h3><p>模型迁至大容量盘并软链接回原路径，本地推理常驻，系统盘零占用。</p></div>
+    <div class="work-item"><h3>GitHub Pages 主页</h3><p>就是这个站点：纯 HTML 单页，推上仓库即上线，国内可访问。</p></div>
+    <div class="work-item"><h3>逆向分析实践</h3><p>对现有程序做行为与结构逆向，理清调用关系后做定制改造。</p></div>
+    <div class="work-item"><h3>小米手环应用</h3><p>基于 Xiaomi Vela 的米环快应用，覆盖蓝牙、定位、传感器、振动等手表能力，含伪装时钟等趣味玩法。<a href="https://github.com/x5574mtptr-debug/opensource/tree/%E5%B0%8F%E7%B1%B3%E6%89%8B%E7%8E%AF" target="_blank" rel="noopener">开源分支 →</a></p></div>
+    <div class="work-item"><h3>Shizuku 激活开源</h3><p>Windows 桌面工具，把 Shizuku 的 ADB 激活流程压成几步点击，免 root 管理应用权限，并支持 Fastboot 线刷。<a href="https://github.com/x5574mtptr-debug/opensource/tree/shizuku" target="_blank" rel="noopener">开源分支 →</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/v1.0.0-portable" target="_blank" rel="noopener">下载便携版 ↓</a> <a href="https://github.com/x5574mtptr-debug/opensource/releases/tag/old-shizuku-gaoji-1.0.0" target="_blank" rel="noopener">旧版 ↓</a></p></div>
   </div>
 </section>
 
 <section class="contact" id="contact">
   <div class="wrap reveal">
-    <div class="big">linkshu</div>
-    <p class="line">想聊聊折腾软硬件，或者一起把某台机器收拾干净？</p>
-    <div class="links">
-      <a href="https://www.icloud.com/mail/" target="_blank" rel="noopener" title="在 iCloud 邮箱中打开">linkshu@icloud.com</a>
+    <p class="lede">想聊聊折腾软硬件，或者一起把某台机器收拾干净？写封邮件就好。</p>
+    <a class="mail" href="https://www.icloud.com/mail/" target="_blank" rel="noopener" title="在 iCloud 邮箱中打开">linkshu@icloud.com</a>
+    <div class="foot">
       <a href="https://github.com/x5574mtptr-debug" target="_blank" rel="noopener">GitHub</a>
+      <span class="muted">© 2026 linkshu · 由 GitHub Pages 托管</span>
     </div>
-    <p class="copy">© 2026 linkshu · 由 GitHub Pages 托管</p>
   </div>
 </section>
 
 <script>
   document.documentElement.classList.add('js');
-  // 滚动后给导航加一条极淡分隔
-  var nav=document.getElementById('nav');
-  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>12)};
-  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
-  // 滚动渐显
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.15});
+  // 首屏大字：载入即上移显现（签名动效）
+  var title=document.querySelector('.hero-title');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(title) title.classList.add('in'); }); });
+  // 板块渐显：进入视口才显现，且绝不在首屏留空白带
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 </script>
 
